@@ -34,7 +34,7 @@ export default function Wallet({ onBackAction }: { onBackAction: () => void }) {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Min ₹10"
-            className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-8 pr-4 text-sm font-bold text-slate-800 focus:border-emerald-500 focus:outline-none transition-all placeholder:text-slate-300"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg py-3 pl-8 pr-4 text-sm font-bold text-slate-800 focus:border-emerald-500 focus:outline-none transition-all placeholder:text-slate-300"
           />
         </div>
       </div>
@@ -44,14 +44,14 @@ export default function Wallet({ onBackAction }: { onBackAction: () => void }) {
           <button
             key={preset}
             onClick={() => setAmount(preset)}
-            className="bg-white hover:bg-slate-50 py-2 rounded-lg text-xs font-bold text-slate-600 transition-colors border border-slate-100"
+            className="bg-white hover:bg-slate-50 py-2 rounded-md text-xs font-bold text-slate-600 transition-colors border border-slate-100"
           >
             +₹{preset}
           </button>
         ))}
       </div>
 
-      <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl shadow-md shadow-emerald-100 transition-all active:scale-[0.98] mt-2 flex items-center justify-center gap-2 text-sm">
+      <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-lg shadow-md shadow-emerald-100 transition-all active:scale-[0.98] mt-2 flex items-center justify-center gap-2 text-sm">
         <Plus size={16} />
         Add Money
       </button>
@@ -74,7 +74,7 @@ export default function Wallet({ onBackAction }: { onBackAction: () => void }) {
             <input
               type="number"
               placeholder="Min ₹100"
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-8 pr-4 text-sm font-bold text-slate-800 focus:border-emerald-500 focus:outline-none transition-all placeholder:text-slate-300"
+              className="w-full bg-slate-50 border border-slate-200 rounded-lg py-3 pl-8 pr-4 text-sm font-bold text-slate-800 focus:border-emerald-500 focus:outline-none transition-all placeholder:text-slate-300"
             />
           </div>
         </div>
@@ -92,16 +92,16 @@ export default function Wallet({ onBackAction }: { onBackAction: () => void }) {
               value={upiId}
               onChange={(e) => setUpiId(e.target.value)}
               placeholder="e.g. name@upi, @paytm"
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm font-bold text-slate-800 focus:border-emerald-500 focus:outline-none transition-all placeholder:text-slate-300"
+              className="w-full bg-slate-50 border border-slate-200 rounded-lg py-3 pl-10 pr-4 text-sm font-bold text-slate-800 focus:border-emerald-500 focus:outline-none transition-all placeholder:text-slate-300"
             />
           </div>
         </div>
       </div>
 
 
-      <button className="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-xl shadow-md shadow-slate-100 transition-all active:scale-[0.98] mt-2 flex items-center justify-center gap-2 text-sm">
+      <button className="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-lg shadow-md shadow-slate-100 transition-all active:scale-[0.98] mt-2 flex items-center justify-center gap-2 text-sm">
         <Minus size={16} />
-        Withdraw Now
+        Withdraw
       </button>
     </motion.div>
   );
@@ -112,7 +112,7 @@ export default function Wallet({ onBackAction }: { onBackAction: () => void }) {
         <button onClick={onBackAction} className="p-2 hover:bg-slate-50 rounded-full transition-colors text-slate-800">
           <ArrowLeft size={20} />
         </button>
-        <h1 className="text-base font-bold text-slate-900">Wallet</h1>
+        <h1 className="text-lg font-bold text-slate-900">Wallet</h1>
         <button className="p-2 hover:bg-slate-50 rounded-full transition-colors text-slate-800">
           <ReceiptText size={20} />
         </button>
@@ -120,7 +120,7 @@ export default function Wallet({ onBackAction }: { onBackAction: () => void }) {
 
       <div className="flex-1 overflow-y-auto px-5 py-4 space-y-6">
         {/* Nav Toggle */}
-        <div className="bg-slate-100 p-1 rounded-xl flex items-center">
+        <div className="bg-slate-100 p-1 rounded-lg flex items-center">
           <button
             onClick={() => setActiveTab("deposit")}
             className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${
@@ -149,11 +149,11 @@ export default function Wallet({ onBackAction }: { onBackAction: () => void }) {
               {activeTab === "deposit" ? "Total Balance" : "Winning Balance"}
             </span>
             <div className="flex items-center gap-1.5">
-              <span className="text-xl font-black text-emerald-600 font-kanit">
+              <span className="text-xl font-black text-emerald-500 font-kanit">
                 ₹{activeTab === "deposit" ? balances.total : balances.winnings}
               </span>
               {activeTab === "deposit" && (
-                <motion.div animate={{ rotate: showBreakdown ? 180 : 0 }} className="text-emerald-600">
+                <motion.div animate={{ rotate: showBreakdown ? 180 : 0 }} className="text-emerald-500">
                   <ChevronDown size={18} />
                 </motion.div>
               )}
@@ -168,7 +168,7 @@ export default function Wallet({ onBackAction }: { onBackAction: () => void }) {
                 exit={{ height: 0, opacity: 0 }}
                 className="overflow-hidden"
               >
-                <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 space-y-3">
+                <div className="bg-slate-50 rounded-lg p-4 border border-slate-100 space-y-3">
                   <div className="flex justify-between items-center text-xs">
                     <span className="font-bold text-slate-400">Winnings</span>
                     <span className="font-bold text-slate-800">₹{balances.winnings}</span>

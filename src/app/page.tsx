@@ -43,14 +43,13 @@ export default function Home() {
     switch (activeTab) {
       case "home":
         return (
-          <div className="flex flex-col gap-0 pb-20 bg-[#F1F5F9]/30 min-h-screen">
+          <div className="flex flex-col gap-0 pb-20 pt-[68px] bg-[#F1F5F9]/30 min-h-screen">
             <Header 
               onWalletClickAction={() => setShowWallet(true)} 
               onMenuClickAction={() => setIsDrawerOpen(true)}
             />
             <BannerCarousel />
             <QuickActions onActionClick={(id) => setActiveTab(id)} />
-            <FeaturedSections />
           </div>
         );
       case "matches":
@@ -102,7 +101,7 @@ export default function Home() {
 
       {isLoggedIn && (
         <>
-          <div className="flex-1 pb-16 overflow-y-auto overflow-x-hidden flex flex-col">
+          <div className="flex-1 pb-16 overflow-y-auto flex flex-col">
             {renderContent()}
           </div>
           <BottomNavbar activeTab={activeTab} setActiveTabAction={setActiveTab} />
@@ -112,10 +111,10 @@ export default function Home() {
       <AnimatePresence>
         {showWallet && (
           <motion.div
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
             className="fixed inset-0 z-[100]"
           >
             <Wallet onBackAction={() => setShowWallet(false)} />

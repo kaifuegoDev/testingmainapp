@@ -61,16 +61,16 @@ const LeaderboardItem = ({
     isUser?: boolean;
 }) => {
   return (
-    <div className={`px-4 py-3 flex items-center justify-between ${isUser ? 'bg-slate-50' : 'bg-white'}`}>
+    <div className={`px-4 py-3 flex items-center justify-between ${isUser ? 'bg-slate-100/90 backdrop-blur-sm' : 'bg-white'}`}>
       <div className="flex items-center gap-3">
-        <span className="w-6 text-center text-xs font-bold text-slate-400 font-kanit">
+        <span className="w-6 text-center text-sm font-bold text-slate-400 font-kanit">
             {rank}
         </span>
-        <div className="w-11 h-11 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 border border-slate-100">
+        <div className={`w-11 h-11 rounded-full flex items-center justify-center text-slate-400 border ${isUser ? 'bg-white border-slate-200' : 'bg-slate-100 border-slate-100'}`}>
           <User size={22} />
         </div>
         <div className="flex flex-col">
-          <span className="text-[15px] font-semibold text-slate-800 leading-none mb-1 font-sora">
+          <span className="text-[14px] font-semibold text-slate-800 leading-none mb-1 font-sora">
             {name}
           </span>
           <span className="text-[11px] font-medium text-slate-400">
@@ -78,7 +78,7 @@ const LeaderboardItem = ({
           </span>
         </div>
       </div>
-      <span className="text-emerald-600 font-bold text-sm font-kanit">
+      <span className="text-emerald-500 font-bold text-base font-kanit">
         {amount}
       </span>
     </div>
@@ -87,9 +87,9 @@ const LeaderboardItem = ({
 
 export default function Leaderboard() {
   const topRankers = [
-    { name: "Xenon", username: "@xenon_pro", amount: "₹4,700", rank: 2, size: 64 },
-    { name: "Zord", username: "@zord_op", amount: "₹5,500", rank: 1, size: 84 },
-    { name: "Nova", username: "@nova_gg", amount: "₹3,700", rank: 3, size: 64 },
+    { name: "Xenon", username: "@xenon_pro", amount: "₹4,700", rank: 2, size: 56 },
+    { name: "Zord", username: "@zord_op", amount: "₹5,500", rank: 1, size: 76 },
+    { name: "Nova", username: "@nova_gg", amount: "₹3,700", rank: 3, size: 56 },
   ];
 
   const listItems = Array.from({ length: 97 }, (_, i) => {
@@ -104,10 +104,10 @@ export default function Leaderboard() {
   });
 
   return (
-    <div className="flex flex-col h-[calc(100dvh-4rem)] bg-white font-sora overflow-hidden">
+    <div className="flex flex-col h-[calc(100dvh-4rem)] bg-white font-sora overflow-hidden relative">
       {/* Premium Header - Sticky */}
-      <div className="bg-gradient-to-b from-slate-600 to-slate-800 rounded-b-[32px] px-6 pt-6 pb-8 sticky top-0 z-10 shadow-lg">
-        <h2 className="text-center text-white/70 text-[10px] font-bold tracking-[3px] uppercase mb-8 font-kanit">
+      <div className="bg-gradient-to-b from-slate-600 to-slate-800 rounded-b-[32px] px-6 pt-5 pb-6 sticky top-0 z-10 shadow-lg">
+        <h2 className="text-center text-white/70 text-[10px] font-bold tracking-[3px] uppercase mb-5 font-kanit">
           Top Rankers
         </h2>
         
@@ -133,6 +133,17 @@ export default function Leaderboard() {
             )}
           </React.Fragment>
         ))}
+      </div>
+
+      {/* Sticky "You" Row */}
+      <div className="sticky bottom-0 bg-slate-100/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-8px_20px_rgba(0,0,0,0.06)] z-20">
+        <LeaderboardItem 
+          rank={7} 
+          name="Yashpal Chouhan" 
+          username="@yashpal_op" 
+          amount="₹128" 
+          isUser={true} 
+        />
       </div>
     </div>
   );

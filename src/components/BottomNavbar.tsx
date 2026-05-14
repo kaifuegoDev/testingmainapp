@@ -19,16 +19,16 @@ const NavItem = ({ icon, label, isActive, onClick }: NavItemProps) => {
     >
       <motion.div
         animate={{
-          scale: isActive ? 1.1 : 1,
-          color: isActive ? "#6366f1" : "#94a3b8",
+          scale: isActive ? 1.05 : 1,
+          color: isActive ? "#003da5" : "#94a3b8",
         }}
         className="mb-1"
       >
         {icon}
       </motion.div>
       <span
-        className={`text-[10px] font-medium ${
-          isActive ? "text-indigo-600" : "text-slate-400"
+        className={`text-[10px] font-semibold ${
+          isActive ? "text-[#003da5]" : "text-slate-400"
         }`}
       >
         {label}
@@ -52,8 +52,8 @@ export default function BottomNavbar({
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-slate-100 px-2 pb-safe-area-inset-bottom shadow-[0_-4px_10px_rgba(0,0,0,0.02)] z-50">
-      <div className="max-w-md mx-auto flex items-center justify-around h-16">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-100 pb-safe-area-inset-bottom shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50">
+      <div className="max-w-md mx-auto flex items-center h-16">
         {tabs.map((tab) => (
           <NavItem
             key={tab.id}

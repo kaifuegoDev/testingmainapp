@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const BANNERS = [
-  { id: 1, color: "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)" },
-  { id: 2, color: "linear-gradient(135deg, #ec4899 0%, #f43f5e 100%)" },
-  { id: 3, color: "linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)" },
+  { id: 1, image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop" },
+  { id: 2, image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop" },
+  { id: 3, image: "https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?q=80&w=800&auto=format&fit=crop" },
 ];
 
 export default function BannerCarousel() {
@@ -22,15 +22,16 @@ export default function BannerCarousel() {
   return (
     <div className="w-full px-4 mt-0.5 flex flex-col gap-2">
       {/* Slider Container */}
-      <div className="relative w-full h-32 md:h-40 overflow-hidden rounded-xl shadow-md border border-slate-100">
+      <div className="relative w-full h-[120px] overflow-hidden rounded-xl shadow-md border border-slate-100 bg-slate-50">
         <AnimatePresence initial={false}>
-          <motion.div
+          <motion.img
             key={currentIndex}
-            initial={{ opacity: 0.8 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            style={{ background: BANNERS[currentIndex].color }}
-            className="absolute inset-0 w-full h-full"
+            src={BANNERS[currentIndex].image}
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+            className="absolute inset-0 w-full h-full object-fill"
           />
         </AnimatePresence>
       </div>

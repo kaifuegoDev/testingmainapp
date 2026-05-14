@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Trophy, BarChart3, ShoppingBag, Gift } from "lucide-react";
+import { Trophy, Share2, Bell, Gift, HeadphonesIcon } from "lucide-react";
 
 interface Action {
   id: string;
@@ -10,9 +10,9 @@ interface Action {
 }
 
 const ACTIONS: Action[] = [
-  { id: "matches", icon: <Trophy size={24} />, label: "My Matches" },
-  { id: "leaderboard", icon: <BarChart3 size={24} />, label: "Leaderboard" },
-  { id: "store", icon: <ShoppingBag size={24} />, label: "Store" },
+  { id: "support", icon: <HeadphonesIcon size={24} />, label: "Support" },
+  { id: "refer", icon: <Share2 size={24} />, label: "Refer & Earn" },
+  { id: "notice", icon: <Bell size={24} />, label: "Notice" },
   { id: "rewards", icon: <Gift size={24} />, label: "Rewards" },
 ];
 

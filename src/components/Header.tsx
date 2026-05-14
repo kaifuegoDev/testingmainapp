@@ -17,7 +17,7 @@ export default function Header({
   onMenuClickAction
 }: HeaderProps) {
   return (
-    <header className="bg-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 border-b border-slate-50 font-sora">
+    <header className="bg-white px-4 py-3 flex items-center justify-between fixed w-full top-0 left-0 z-50 border-b border-slate-50 font-sora">
       <div 
         onClick={onMenuClickAction}
         className="flex items-center gap-3 cursor-pointer group active:scale-95 transition-transform"

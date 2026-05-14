@@ -4,7 +4,7 @@ import React from "react";
 import { 
   User, Wallet, Trophy, 
   Gamepad2, HeadphonesIcon, Share2, ShieldAlert,
-  LogOut, ChevronRight, Info
+  LogOut, ChevronRight, Info, BarChart3, History
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -32,9 +32,8 @@ export default function AppDrawer({
 
   const menuItems = [
     { id: "account", label: "Account", icon: <User size={20} strokeWidth={1.8} /> },
-    { id: "gameinfo", label: "Game Info", icon: <Info size={20} strokeWidth={1.8} /> },
     { id: "wallet", label: "Wallet", icon: <Wallet size={20} strokeWidth={1.8} />, isWallet: true },
-    { id: "banlist", label: "Ban List", icon: <ShieldAlert size={20} strokeWidth={1.8} /> },
+    { id: "leaderboard", label: "Leaderboard", icon: <BarChart3 size={20} strokeWidth={1.8} /> },
     { id: "matches", label: "My Matches", icon: <Gamepad2 size={20} strokeWidth={1.8} /> },
     { id: "support", label: "Support", icon: <HeadphonesIcon size={20} strokeWidth={1.8} /> },
     { id: "refer", label: "Refer & Earn", icon: <Share2 size={20} strokeWidth={1.8} /> },
@@ -60,16 +59,16 @@ export default function AppDrawer({
         initial={{ x: "-100%" }}
         animate={{ x: isOpen ? 0 : "-100%" }}
         transition={{ type: "spring", damping: 28, stiffness: 280 }}
-        className="fixed top-0 left-0 bottom-0 w-[300px] bg-white z-[110] flex flex-col font-sora"
+        className="fixed top-0 left-0 bottom-0 w-[320px] bg-white z-[110] flex flex-col font-sora"
       >
         {/* Header — White, centered */}
-        <div className="bg-white border-b border-slate-50 px-6 pt-14 pb-6 flex flex-col items-center">
+        <div className="bg-white border-b border-slate-50 px-4 pt-14 pb-6 flex flex-col items-center">
           {/* Avatar */}
-          <div className="w-20 h-20 rounded-full bg-slate-100 border border-slate-200 overflow-hidden mb-3">
+          <div className="w-20 h-20 rounded-full bg-slate-50 border-4 border-slate-100 overflow-hidden mb-3 shadow-inner">
             <img
               src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
               alt="User"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-full"
             />
           </div>
 
@@ -93,7 +92,7 @@ export default function AppDrawer({
             <div className="w-px h-8 bg-slate-100" />
             <div className="flex-1 flex flex-col items-center py-3">
               <span className="text-[11px] font-semibold text-slate-500">Earned</span>
-              <span className="text-[15px] font-semibold text-emerald-600">₹{user.earned}</span>
+              <span className="text-[15px] font-semibold text-emerald-500">₹{user.earned}</span>
             </div>
           </div>
         </div>

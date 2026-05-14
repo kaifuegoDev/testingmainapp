@@ -127,18 +127,18 @@ export default function AuthScreen({ onLoginSuccessAction }: AuthScreenProps) {
                           placeholder="0000000000"
                           value={phoneNumber}
                           onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ""))}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-lg py-3 pl-16 pr-4 text-sm font-semibold focus:outline-none focus:border-[#003da5] transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-lg py-4 pl-16 pr-4 text-sm font-semibold focus:outline-none focus:border-[#003da5] transition-all"
                           required
                         />
                       </div>
                     </div>
-                    <button type="submit" disabled={loading || phoneNumber.length < 10} className="w-full bg-[#003da5] text-white rounded-lg py-3 font-bold text-sm shadow-lg shadow-blue-900/10 active:scale-[0.98] transition-all disabled:opacity-50">
+                    <button type="submit" disabled={loading || phoneNumber.length < 10} className="w-full bg-[#003da5] text-white rounded-lg py-4 font-bold text-sm shadow-lg shadow-blue-900/10 active:scale-[0.98] transition-all disabled:opacity-50">
                       {loading ? "Please wait..." : "Continue"}
                     </button>
                   </form>
                 ) : (
                   <form onSubmit={handleLogin} className="space-y-8">
-                    <div className="flex justify-center gap-2">
+                    <div className="flex justify-center gap-3">
                       {otp.map((digit, idx) => (
                         <input
                           key={idx}
@@ -148,14 +148,14 @@ export default function AuthScreen({ onLoginSuccessAction }: AuthScreenProps) {
                           value={digit}
                           onChange={(e) => handleOtpChange(idx, e.target.value)}
                           onKeyDown={(e) => e.key === "Backspace" && !digit && idx > 0 && document.getElementById(`otp-${idx - 1}`)?.focus()}
-                          className="w-10 h-12 bg-slate-50 border border-slate-200 rounded-lg text-center text-xl font-bold text-[#003da5] focus:outline-none focus:border-[#003da5]"
+                          className="w-11 h-14 bg-slate-50 border border-slate-200 rounded-lg text-center text-xl font-bold text-[#003da5] focus:outline-none focus:border-[#003da5]"
                         />
                       ))}
                     </div>
                     <div className="text-center">
                       <p className="text-xs text-slate-400">Resend in <span className="font-bold text-slate-800">{timer}s</span></p>
                     </div>
-                    <button type="submit" disabled={loading || otp.join("").length < 6} className="w-full bg-[#003da5] text-white rounded-lg py-3 font-bold text-sm active:scale-[0.98] transition-all disabled:opacity-50">
+                    <button type="submit" disabled={loading || otp.join("").length < 6} className="w-full bg-[#003da5] text-white rounded-lg py-4 font-bold text-sm active:scale-[0.98] transition-all disabled:opacity-50">
                       {loading ? "Verifying..." : "Verify & Login"}
                     </button>
                     <button type="button" onClick={() => setStep("phone")} className="w-full text-xs font-bold text-slate-400 flex items-center justify-center gap-1">
@@ -181,7 +181,7 @@ export default function AuthScreen({ onLoginSuccessAction }: AuthScreenProps) {
                     <input
                       type="text"
                       placeholder="John Doe"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-3.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all"
                       required
                     />
                   </div>
@@ -194,7 +194,7 @@ export default function AuthScreen({ onLoginSuccessAction }: AuthScreenProps) {
                     <input
                       type="text"
                       placeholder="johndoe123"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-3.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all"
                       required
                     />
                   </div>
@@ -207,7 +207,7 @@ export default function AuthScreen({ onLoginSuccessAction }: AuthScreenProps) {
                     <input
                       type="email"
                       placeholder="john@example.com"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-3.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all"
                       required
                     />
                   </div>
@@ -220,7 +220,7 @@ export default function AuthScreen({ onLoginSuccessAction }: AuthScreenProps) {
                     <input
                       type="tel"
                       placeholder="Phone Number"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-3.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all"
                       required
                     />
                   </div>
@@ -233,12 +233,12 @@ export default function AuthScreen({ onLoginSuccessAction }: AuthScreenProps) {
                     <input
                       type="text"
                       placeholder="ENTERCODE"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all uppercase tracking-wider"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg py-3.5 pl-11 pr-4 text-sm font-medium focus:outline-none focus:border-[#003da5] transition-all uppercase tracking-wider"
                     />
                   </div>
                 </div>
 
-                <button type="submit" disabled={loading} className="w-full bg-[#003da5] text-white rounded-lg py-3 font-bold text-sm shadow-lg shadow-blue-900/10 active:scale-[0.98] transition-all mt-2">
+                <button type="submit" disabled={loading} className="w-full bg-[#003da5] text-white rounded-lg py-4 font-bold text-sm shadow-lg shadow-blue-900/10 active:scale-[0.98] transition-all mt-2">
                   {loading ? "Creating Account..." : "Create Account"}
                 </button>
               </motion.form>
@@ -256,7 +256,7 @@ export default function AuthScreen({ onLoginSuccessAction }: AuthScreenProps) {
                   <span className="text-[10px] font-bold text-slate-300 uppercase">Or</span>
                   <div className="flex-1 h-px bg-slate-100" />
                 </div>
-                <button className="w-full bg-white border border-slate-200 text-slate-700 rounded-lg py-2.5 font-semibold text-sm flex items-center justify-center gap-3 hover:bg-slate-50 transition-all">
+                <button className="w-full bg-white border border-slate-200 text-slate-700 rounded-lg py-3.5 font-semibold text-sm flex items-center justify-center gap-3 hover:bg-slate-50 transition-all">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M23.5 12.2c0-.8-.1-1.6-.2-2.4H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.6v3h3.8c2.2-2.1 3.6-5.2 3.6-8.7z" fill="#4285F4"/>
                     <path d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.8-3c-1.1.7-2.5 1.2-4.1 1.2-3.2 0-5.8-2.1-6.8-5H1.3v3.1C3.3 21.4 7.4 24 12 24z" fill="#34A853"/>
