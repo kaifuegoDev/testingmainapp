@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { ArrowLeft, ReceiptText, ChevronDown, Plus, Minus, CreditCard } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Wallet({ onBack }: { onBack: () => void }) {
+export default function Wallet({ onBackAction }: { onBackAction: () => void }) {
   const [activeTab, setActiveTab] = useState<"deposit" | "withdraw">("deposit");
   const [showBreakdown, setShowBreakdown] = useState(false);
   const [amount, setAmount] = useState("");
@@ -109,7 +109,7 @@ export default function Wallet({ onBack }: { onBack: () => void }) {
   return (
     <div className="fixed inset-0 bg-white z-[60] flex flex-col font-sora">
       <header className="px-4 py-3 flex items-center justify-between border-b border-slate-50">
-        <button onClick={onBack} className="p-2 hover:bg-slate-50 rounded-full transition-colors text-slate-800">
+        <button onClick={onBackAction} className="p-2 hover:bg-slate-50 rounded-full transition-colors text-slate-800">
           <ArrowLeft size={20} />
         </button>
         <h1 className="text-base font-bold text-slate-900">Wallet</h1>

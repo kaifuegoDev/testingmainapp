@@ -13,13 +13,14 @@ interface AppDrawerProps {
   onCloseAction: () => void;
   onNavigateAction: (tab: string) => void;
   onWalletClickAction?: () => void;
+  onLogoutAction?: () => void;
 }
-
 export default function AppDrawer({ 
-  isOpen, 
+  isOpen,
   onCloseAction, 
   onNavigateAction, 
-  onWalletClickAction 
+  onWalletClickAction,
+  onLogoutAction 
 }: AppDrawerProps) {
   const user = {
     name: "Anshul Gamer",
@@ -126,7 +127,13 @@ export default function AppDrawer({
           <div className="mx-5 my-2 h-px bg-slate-50" />
 
           {/* Logout */}
-          <button className="w-full flex items-center gap-4 px-6 py-3.5 hover:bg-red-50 transition-colors group">
+          <button 
+            onClick={() => {
+              if (onLogoutAction) onLogoutAction();
+              onCloseAction();
+            }}
+            className="w-full flex items-center gap-4 px-6 py-3.5 hover:bg-red-50 transition-colors group"
+          >
             <LogOut size={20} strokeWidth={1.8} className="text-red-500" />
             <span className="text-[15px] font-medium text-red-500">Logout</span>
           </button>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 interface GameModesProps {
   modes: string[];
@@ -10,18 +11,18 @@ interface GameModesProps {
 
 export default function GameModes({ modes, selectedMode, onSelect }: GameModesProps) {
   return (
-    <div className="bg-white border-b border-slate-50">
-      <div className="flex overflow-x-auto no-scrollbar gap-2 px-4 py-3">
+    <div className="w-full bg-white">
+      <div className="flex overflow-x-auto no-scrollbar py-1 px-4 gap-2 scroll-smooth">
         {modes.map((mode) => {
           const isSelected = selectedMode === mode;
           return (
             <button
               key={mode}
               onClick={() => onSelect(mode)}
-              className={`whitespace-nowrap px-5 py-2 rounded-full text-[13px] font-medium transition-all ${
+              className={`flex-shrink-0 px-4 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 whitespace-nowrap font-outfit ${
                 isSelected
-                  ? "bg-slate-700 text-white shadow-sm"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  ? "bg-[#475569] text-white shadow-sm"
+                  : "bg-[#F1F5F9] text-[#475569] hover:bg-[#E2E8F0]"
               }`}
             >
               {mode}
@@ -29,15 +30,6 @@ export default function GameModes({ modes, selectedMode, onSelect }: GameModesPr
           );
         })}
       </div>
-      <style jsx>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </div>
   );
 }

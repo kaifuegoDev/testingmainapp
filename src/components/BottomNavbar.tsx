@@ -39,10 +39,10 @@ const NavItem = ({ icon, label, isActive, onClick }: NavItemProps) => {
 
 export default function BottomNavbar({
   activeTab,
-  setActiveTab,
+  setActiveTabAction,
 }: {
   activeTab: string;
-  setActiveTab: (tab: string) => void;
+  setActiveTabAction: (tab: string) => void;
 }) {
   const tabs = [
     { id: "home", label: "Home", icon: <Home size={22} /> },
@@ -60,7 +60,7 @@ export default function BottomNavbar({
             icon={tab.icon}
             label={tab.label}
             isActive={activeTab === tab.id}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => setActiveTabAction(tab.id)}
           />
         ))}
       </div>

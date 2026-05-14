@@ -6,20 +6,20 @@ import { Wallet } from "lucide-react";
 interface HeaderProps {
   userName?: string;
   avatarUrl?: string;
-  onWalletClick?: () => void;
-  onMenuClick?: () => void;
+  onWalletClickAction?: () => void;
+  onMenuClickAction?: () => void;
 }
 
 export default function Header({ 
   userName = "Guest Player", 
   avatarUrl,
-  onWalletClick,
-  onMenuClick
+  onWalletClickAction,
+  onMenuClickAction
 }: HeaderProps) {
   return (
     <header className="bg-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 border-b border-slate-50 font-sora">
       <div 
-        onClick={onMenuClick}
+        onClick={onMenuClickAction}
         className="flex items-center gap-3 cursor-pointer group active:scale-95 transition-transform"
       >
         {/* Avatar */}
@@ -47,7 +47,7 @@ export default function Header({
       <div className="flex items-center gap-2">
         {/* Wallet Button */}
         <button 
-          onClick={onWalletClick}
+          onClick={onWalletClickAction}
           className="w-11 h-11 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-200 transition-colors active:scale-90"
         >
           <Wallet size={20} />
