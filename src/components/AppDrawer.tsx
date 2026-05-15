@@ -4,7 +4,7 @@ import React from "react";
 import { 
   User, Wallet, Trophy, 
   Gamepad2, HeadphonesIcon, Share2, ShieldAlert,
-  LogOut, ChevronRight, Info, BarChart3, History
+  LogOut, ChevronRight, Info, BarChart3, History, Gift
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -33,6 +33,7 @@ export default function AppDrawer({
   const menuItems = [
     { id: "account", label: "Account", icon: <User size={20} strokeWidth={1.8} /> },
     { id: "wallet", label: "Wallet", icon: <Wallet size={20} strokeWidth={1.8} />, isWallet: true },
+    { id: "rewards", label: "Rewards", icon: <Gift size={20} strokeWidth={1.8} /> },
     { id: "leaderboard", label: "Leaderboard", icon: <BarChart3 size={20} strokeWidth={1.8} /> },
     { id: "matches", label: "My Matches", icon: <Gamepad2 size={20} strokeWidth={1.8} /> },
     { id: "support", label: "Support", icon: <HeadphonesIcon size={20} strokeWidth={1.8} /> },

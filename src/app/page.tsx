@@ -8,6 +8,8 @@ import MyMatches from "@/components/MyMatches";
 import Wallet from "@/components/Wallet";
 import AppDrawer from "@/components/AppDrawer";
 import AccountView from "@/components/AccountView";
+import StoreView from "@/components/StoreView";
+import RewardsView from "@/components/RewardsView";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift, ShoppingBag } from "lucide-react";
@@ -23,6 +25,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("home");
   const [showWallet, setShowWallet] = useState(false);
   const [showAccount, setShowAccount] = useState(false);
+  const [showRewards, setShowRewards] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -59,25 +62,7 @@ export default function Home() {
       case "leaderboard":
         return <Leaderboard />;
       case "store":
-        return (
-          <div className="flex flex-col h-full bg-white font-sora min-h-[calc(100vh-4rem)]">
-            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center -mt-16">
-              <ShoppingBag className="text-[#003da5] mb-4" size={48} />
-              <h3 className="text-slate-700 font-semibold text-base mb-1">Coming Soon</h3>
-              <p className="text-slate-400 text-sm">New items are on their way!</p>
-            </div>
-          </div>
-        );
-      case "rewards":
-        return (
-          <div className="flex flex-col h-full bg-white font-sora min-h-[calc(100vh-4rem)]">
-            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center -mt-16">
-              <Gift className="text-[#003da5] mb-4" size={48} />
-              <h3 className="text-slate-700 font-semibold text-base mb-1">Rewards Center</h3>
-              <p className="text-slate-400 text-sm">Win matches to earn exclusive rewards!</p>
-            </div>
-          </div>
-        );
+        return <StoreView />;
       default:
         return null;
     }
@@ -141,6 +126,20 @@ export default function Home() {
             />
           </motion.div>
         )}
+
+        {showRewards && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed inset-0 z-[120]"
+          >
+            <RewardsView 
+              onBackAction={() => setShowRewards(false)} 
+            />
+          </motion.div>
+        )}
       </AnimatePresence>
 
       <AppDrawer 
@@ -149,6 +148,8 @@ export default function Home() {
         onNavigateAction={(tab) => {
           if (tab === "account") {
             setShowAccount(true);
+          } else if (tab === "rewards") {
+            setShowRewards(true);
           } else {
             setActiveTab(tab);
           }

@@ -74,8 +74,8 @@ const LeaderboardItem = ({
   return (
     <div className={`px-4 py-3 flex items-center justify-between ${isUser ? 'bg-slate-100/90 backdrop-blur-sm' : 'bg-white'}`}>
       <div className="flex items-center gap-3">
-        <span className="w-7 text-center text-base font-bold text-slate-400 font-kanit">
-            {rank}
+        <span className="w-10 text-center text-base font-bold text-slate-400 font-kanit">
+            #{rank}
         </span>
         <div className={`w-11 h-11 rounded-full overflow-hidden flex items-center justify-center text-slate-400 border ${isUser ? 'bg-white border-slate-200' : 'bg-slate-100 border-slate-100'}`}>
           {hasAvatar ? (
@@ -123,7 +123,7 @@ export default function Leaderboard() {
   return (
     <div className="flex flex-col h-[calc(100dvh-4rem)] bg-white font-sora overflow-hidden relative">
       {/* Premium Header - Sticky */}
-      <div className="bg-gradient-to-b from-[#1a56db] to-[#003da5] rounded-b-[32px] px-6 pt-5 pb-6 sticky top-0 z-10">
+      <div className="bg-gradient-to-b from-[#0f172a] to-[#1e293b] rounded-b-[32px] px-6 pt-5 pb-6 sticky top-0 z-10">
         <h2 className="text-center text-white/70 text-[10px] font-bold tracking-[3px] uppercase mb-5 font-kanit">
           Top Rankers
         </h2>
