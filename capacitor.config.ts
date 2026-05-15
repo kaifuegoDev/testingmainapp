@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.instaarena.app',
+  appId: 'com.zigzec',
   appName: 'Zigzec',
   webDir: 'out',
   server: {

@@ -1,4 +1,4 @@
-package com.instaarena.app;
+package com.zigzec;
 
 import com.getcapacitor.BridgeActivity;
 

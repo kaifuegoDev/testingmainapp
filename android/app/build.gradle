@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "com.instaarena.app"
+    namespace = "com.zigzec"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.instaarena.app"
+        applicationId "com.zigzec"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

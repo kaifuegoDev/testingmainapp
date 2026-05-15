@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Zigzec</string>
     <string name="title_activity_main">Zigzec</string>
-    <string name="package_name">com.instaarena.app</string>
-    <string name="custom_url_scheme">com.instaarena.app</string>
+    <string name="package_name">com.zigzec</string>
+    <string name="custom_url_scheme">com.zigzec</string>
 </resources>
