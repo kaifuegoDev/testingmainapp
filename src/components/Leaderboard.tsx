@@ -18,6 +18,8 @@ const PodiumUser = ({
   avatarSize: number;
 }) => {
   const isFirst = rank === 1;
+  const hasAvatar = rank % 3 !== 0; // 1st and 2nd have avatars, 3rd doesn't
+  const avatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`;
   
   return (
     <motion.div 
@@ -28,9 +30,13 @@ const PodiumUser = ({
     >
       <div 
         style={{ width: avatarSize, height: avatarSize }}
-        className="rounded-full bg-white/20 border-2 border-white/10 flex items-center justify-center relative overflow-hidden"
+        className="rounded-full bg-white/20 border-2 border-white/10 flex items-center justify-center relative overflow-hidden shadow-xl"
       >
-        <User size={avatarSize * 0.6} className="text-white/30" />
+        {hasAvatar ? (
+          <img src={avatarUrl} alt={name} className="w-full h-full object-cover" />
+        ) : (
+          <User size={avatarSize * 0.6} className="text-white/30" />
+        )}
       </div>
       <div className="mt-3 flex flex-col items-center">
         <span className={`text-white font-semibold leading-tight font-kanit ${isFirst ? 'text-sm' : 'text-xs'}`}>
@@ -60,14 +66,23 @@ const LeaderboardItem = ({
     amount: string; 
     isUser?: boolean;
 }) => {
+  const hasAvatar = isUser || rank % 2 === 0; // User always has avatar, others every 2nd rank
+  const avatarUrl = isUser 
+    ? "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+    : `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`;
+
   return (
     <div className={`px-4 py-3 flex items-center justify-between ${isUser ? 'bg-slate-100/90 backdrop-blur-sm' : 'bg-white'}`}>
       <div className="flex items-center gap-3">
-        <span className="w-6 text-center text-sm font-bold text-slate-400 font-kanit">
+        <span className="w-7 text-center text-base font-bold text-slate-400 font-kanit">
             {rank}
         </span>
-        <div className={`w-11 h-11 rounded-full flex items-center justify-center text-slate-400 border ${isUser ? 'bg-white border-slate-200' : 'bg-slate-100 border-slate-100'}`}>
-          <User size={22} />
+        <div className={`w-11 h-11 rounded-full overflow-hidden flex items-center justify-center text-slate-400 border ${isUser ? 'bg-white border-slate-200' : 'bg-slate-100 border-slate-100'}`}>
+          {hasAvatar ? (
+            <img src={avatarUrl} alt={name} className="w-full h-full object-cover" />
+          ) : (
+            <User size={22} />
+          )}
         </div>
         <div className="flex flex-col">
           <span className="text-[14px] font-semibold text-slate-800 leading-none mb-1 font-sora">
@@ -94,9 +109,11 @@ export default function Leaderboard() {
 
   const listItems = Array.from({ length: 97 }, (_, i) => {
     const rank = i + 4;
+    const playerNames = ["Aryan", "Rohan", "Karan", "Rahul", "Vikas", "Amit", "Suresh", "Deepak", "Nikhil", "Sanjay", "Priya", "Mohit", "Ravi", "Sachin", "Aakash", "Tushar", "Varun", "Gaurav", "Harsh", "Ishaan", "Jay", "Kunal", "Lokesh", "Manish", "Nakul", "Om", "Piyush", "Qasim", "Ritesh", "Shubham"];
+    const name = playerNames[i % playerNames.length];
     return {
-      name: `Player ${rank}`,
-      username: `@player_${rank}`,
+      name: name,
+      username: `@${name.toLowerCase()}`,
       amount: `₹${Math.floor(Math.random() * 3000 + 500)}`,
       rank: rank,
       isUser: rank === 7
@@ -106,7 +123,7 @@ export default function Leaderboard() {
   return (
     <div className="flex flex-col h-[calc(100dvh-4rem)] bg-white font-sora overflow-hidden relative">
       {/* Premium Header - Sticky */}
-      <div className="bg-gradient-to-b from-slate-600 to-slate-800 rounded-b-[32px] px-6 pt-5 pb-6 sticky top-0 z-10 shadow-lg">
+      <div className="bg-gradient-to-b from-[#1a56db] to-[#003da5] rounded-b-[32px] px-6 pt-5 pb-6 sticky top-0 z-10">
         <h2 className="text-center text-white/70 text-[10px] font-bold tracking-[3px] uppercase mb-5 font-kanit">
           Top Rankers
         </h2>
@@ -129,7 +146,7 @@ export default function Leaderboard() {
           <React.Fragment key={idx}>
             <LeaderboardItem {...item} />
             {idx < listItems.length - 1 && (
-              <div className="mx-4 ml-[72px] border-b border-slate-50" />
+              <div className="mx-4 border-b border-slate-100" />
             )}
           </React.Fragment>
         ))}

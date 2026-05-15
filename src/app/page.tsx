@@ -7,6 +7,7 @@ import Leaderboard from "@/components/Leaderboard";
 import MyMatches from "@/components/MyMatches";
 import Wallet from "@/components/Wallet";
 import AppDrawer from "@/components/AppDrawer";
+import AccountView from "@/components/AccountView";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift, ShoppingBag } from "lucide-react";
@@ -21,6 +22,7 @@ import { useEffect } from "react";
 export default function Home() {
   const [activeTab, setActiveTab] = useState("home");
   const [showWallet, setShowWallet] = useState(false);
+  const [showAccount, setShowAccount] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,8 +50,8 @@ export default function Home() {
               onWalletClickAction={() => setShowWallet(true)} 
               onMenuClickAction={() => setIsDrawerOpen(true)}
             />
-            <BannerCarousel />
-            <QuickActions onActionClick={(id) => setActiveTab(id)} />
+            {/* <BannerCarousel />
+            <QuickActions onActionClick={(id) => setActiveTab(id)} /> */}
           </div>
         );
       case "matches":
@@ -120,12 +122,37 @@ export default function Home() {
             <Wallet onBackAction={() => setShowWallet(false)} />
           </motion.div>
         )}
+
+        {showAccount && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className="fixed inset-0 z-[120]"
+          >
+            <AccountView 
+              onBackAction={() => setShowAccount(false)} 
+              onLogoutAction={() => {
+                setIsLoggedIn(false);
+                setShowAccount(false);
+                localStorage.removeItem("isLoggedIn");
+              }}
+            />
+          </motion.div>
+        )}
       </AnimatePresence>
 
       <AppDrawer 
         isOpen={isDrawerOpen} 
         onCloseAction={() => setIsDrawerOpen(false)} 
-        onNavigateAction={setActiveTab}
+        onNavigateAction={(tab) => {
+          if (tab === "account") {
+            setShowAccount(true);
+          } else {
+            setActiveTab(tab);
+          }
+        }} 
         onWalletClickAction={() => { setIsDrawerOpen(false); setShowWallet(true); }}
         onLogoutAction={() => {
           setIsLoggedIn(false);

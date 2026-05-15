@@ -14,7 +14,7 @@ const kanit = Kanit({
 });
 
 export const metadata: Metadata = {
-  title: "InstaArena | Gaming Platform",
+  title: "Zigzec | Gaming Platform",
   description: "Experience the ultimate gaming arena.",
 };
 
