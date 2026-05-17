@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Experience the ultimate gaming arena.",
 };
 
+import OneSignalInitializer from "@/components/OneSignalInitializer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sora.variable} ${kanit.variable}`}>
-      <body className="antialiased font-sora">{children}</body>
+      <body className="antialiased font-sora" suppressHydrationWarning>
+        <OneSignalInitializer />
+        {children}
+      </body>
     </html>
   );
 }

@@ -3,58 +3,48 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const letters = ["Z", "i", "g", "z", "e", "c"];
-
-// Each letter zigzags: odd index = up, even index = down
-const zigzagY = (i: number) => (i % 2 === 0 ? -30 : 30);
-
 export default function SplashScreen() {
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: {
+      pathLength: 1,
+      opacity: 1,
+      transition: {
+        pathLength: { duration: 1.5, ease: "easeInOut" as const, repeat: Infinity, repeatType: "reverse" as const },
+        opacity: { duration: 0.1 }
+      }
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-white"
     >
-      {/* Zigzac Letter Animation */}
-      <div className="flex items-center">
-        {letters.map((letter, i) => (
-          <motion.span
-            key={i}
-            initial={{ opacity: 0, y: zigzagY(i) }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: i * 0.1,
-              duration: 0.5,
-              type: "spring",
-              stiffness: 200,
-              damping: 12,
-            }}
-            className="text-5xl font-black tracking-tight text-[#003da5] font-kanit"
-          >
-            {letter}
-          </motion.span>
-        ))}
+      <div className="relative w-28 h-28 flex items-center justify-center">
+        <motion.svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 100 100"
+          initial="hidden"
+          animate="visible"
+          className="overflow-visible relative z-10"
+        >
+          {/* Continuous Black Zigzag/Scribble */}
+          <motion.path
+            d="M 20 20 L 85 10 L 10 40 L 90 30 L 15 60 L 85 50 L 20 80 L 80 70 L 30 100 L 70 90"
+            fill="transparent"
+            stroke="#000000"
+            strokeWidth="6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            variants={draw}
+          />
+        </motion.svg>
       </div>
-
-      {/* Underline swipe animation */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
-        style={{ originX: 0 }}
-        className="h-[3px] w-28 bg-[#003da5] rounded-full mt-1"
-      />
-
-      {/* Tagline fade in */}
-      <motion.p
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.4 }}
-        className="text-slate-400 text-xs font-medium tracking-widest uppercase mt-4"
-      >
-        Play · Compete · Win
-      </motion.p>
     </motion.div>
   );
 }
+

@@ -4,11 +4,16 @@ const config: CapacitorConfig = {
   appId: 'com.zigzec',
   appName: 'Zigzec',
   webDir: 'out',
-  server: {
-    androidScheme: 'https',
-    hostname: 'testingmainapp.vercel.app',
-    cleartext: true
-  }
+  android: {
+    allowMixedContent: true,
+    captureInput: true,
+    webContentsDebuggingEnabled: false, // disable in prod
+  },
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 0,
+    },
+  },
 };
 
 export default config;

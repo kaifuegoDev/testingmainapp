@@ -1,28 +1,48 @@
-@import "tailwindcss";
-
-@theme {
-  --color-primary: #6366f1;
-  --color-secondary: #ec4899;
-  --font-sora: var(--font-sora);
-  --font-kanit: var(--font-kanit);
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
 }
 
-body {
+html, body {
   background: var(--background);
   color: var(--foreground);
   margin: 0;
   padding: 0;
   font-family: var(--font-sora), sans-serif;
+  overscroll-behavior-y: none;
+  overflow-x: hidden;
+  height: 100%;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  /* GPU Acceleration */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth transitions */
+/* Optimize scrolling for mobile */
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Remove laggy universal transitions */
 * {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition: none !important;
+}
+
+/* Only transition specific properties on specific elements */
+button, a, .interactive {
+  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease !important;
+}
+
+/* Force GPU layers for common animated elements */
+.gpu-accel {
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .font-sora {
@@ -37,5 +57,6 @@ body {
 .text-gradient {
   background: linear-gradient(to right, #6366f1, #ec4899);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }

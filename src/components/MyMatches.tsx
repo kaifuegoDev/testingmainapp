@@ -14,24 +14,24 @@ export default function MyMatches() {
   const [activeTab, setActiveTab] = useState("upcoming");
 
   return (
-    <div className="flex flex-col bg-white min-h-screen font-sora">
-      {/* Fixed Header with Integrated Tabs */}
-      <div className="fixed top-0 left-0 right-0 bg-white z-50">
-        <div className="h-14 flex items-center justify-center">
-          <h1 className="text-slate-900 font-extrabold text-[17px] tracking-tight">
+    <div className="flex flex-col bg-white min-h-full font-sora">
+      {/* Sticky Header with Integrated Tabs */}
+      <div className="sticky top-0 bg-white z-50 shadow-sm border-b border-slate-50 lg:border-none lg:shadow-none">
+        <div className="h-14 lg:h-8 flex items-center justify-center lg:hidden">
+          <h1 className="text-slate-900 font-extrabold text-[17px] tracking-tight font-kanit">
             My Matches
           </h1>
         </div>
         
-        <div className="px-4 pb-3">
-          <div className="bg-slate-100 p-1 rounded-full flex items-center w-full">
+        <div className="px-4 pt-2 pb-4 lg:pt-5 lg:px-8">
+          <div className="bg-slate-100 p-1 rounded-full flex items-center w-full max-w-md mx-auto">
             {TABS.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative flex-1 py-1.5 text-[10px] font-bold tracking-wider transition-colors duration-200 z-10 ${
+                  className={`relative flex-1 py-1.5 lg:py-2.5 text-[10px] lg:text-[12px] font-bold tracking-wider transition-colors duration-200 z-10 ${
                     isActive ? "text-white" : "text-slate-500"
                   }`}
                 >
@@ -48,15 +48,10 @@ export default function MyMatches() {
             })}
           </div>
         </div>
-        {/* Thin Line */}
-        <div className="h-[1px] bg-slate-200/50 w-full" />
       </div>
 
-      {/* Spacer for Fixed Combined Header */}
-      <div className="h-[120px]" />
-
       {/* Content Area - Perfectly Centered */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 min-h-[400px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
